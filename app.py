@@ -4,8 +4,6 @@ from vertexai.generative_models import GenerativeModel, Part
 
 vertexai.init(project="sandcastle-401718", location="us-central1")
 
-model = GenerativeModel("gemini-1.5-flash-002")
-
 with open("./prompt_template.txt", "r") as file:
     prompt_template = file.read()
 
@@ -17,7 +15,7 @@ document = Part.from_uri(
     uri="gs://arauco-sandcastle-401718/document.md",
 )
 
-model = GenerativeModel("gemini-1.5-flash-002", system_instruction=[system_instruction])
+model = GenerativeModel("gemini-1.5-pro-002", system_instruction=[system_instruction])
 
 def response_generator():
     gemini_prompt = prompt_template.format(
