@@ -1,6 +1,6 @@
 import streamlit as st
 import vertexai
-from vertexai.generative_models import GenerativeModel, Part
+from vertexai.generative_models import GenerativeModel, Part, GenerationConfig
 
 vertexai.init(project="sandcastle-401718", location="us-central1")
 
@@ -18,12 +18,16 @@ document = Part.from_uri(
 model = GenerativeModel("gemini-1.5-pro-002", system_instruction=[system_instruction])
 
 def response_generator():
+    print(st.session_state.messages)
     gemini_prompt = prompt_template.format(
         messages=st.session_state.messages,
         question=prompt
     )
     responses = model.generate_content(
-        [gemini_prompt, document],
+        [document, gemini_prompt],
+        generation_config=GenerationConfig(
+            temperature=0
+        ),
         stream=True
     )
     for response in responses:
@@ -31,7 +35,7 @@ def response_generator():
 
 
 if __name__ == "__main__":
-    st.title("Memoria Arauco 2023 🌳")
+    st.title("Reporte Integrado Arauco 2023 🌳")
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [

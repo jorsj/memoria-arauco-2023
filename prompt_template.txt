@@ -1,6 +1,6 @@
-<History>
+<Historial>
 {messages}
-</History>
+</Historial>
 
-Question: {question}
-Answer: 
+Pregunta: {question}
+Respuesta: 
