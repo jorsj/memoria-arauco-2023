@@ -23,7 +23,7 @@ document = Part.from_uri(
     uri="gs://arauco-sandcastle-401718/document.md",
 )
 
-model = GenerativeModel("gemini-1.5-pro-002", system_instruction=[system_instruction])
+model = GenerativeModel("gemini-1.5-flash-002", system_instruction=[system_instruction])
 
 
 def response_generator(max_retries=5, initial_delay=1):
@@ -80,7 +80,10 @@ if __name__ == "__main__":
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [
-            {"role": "assistant", "content": welcome}
+            {
+                "role": "assistant",
+                "content": welcome
+            }
         ]
 
     for msg in st.session_state.messages:
