@@ -176,7 +176,7 @@ def response_generator(max_retries=5, initial_delay=1):
 if __name__ == "__main__":
     if "initialized" not in st.session_state or not st.session_state.initialized:
         print("Starting application...")
-        st.title("Reporte Integrado Arauco 2023 🌳")
+        st.set_page_config(page_title="Reporte Integrado Arauco 2023", page_icon="🌳")
         vertexai.init(project="sandcastle-401718", location="us-central1")
         st.cached_content, st.model = refresh_cached_context()
         st.session_state.initialized = True
